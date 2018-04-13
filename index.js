@@ -93,6 +93,10 @@ wss.on('connection', function connection(ws) {
         break;
       case "JOIN":
         name = msgParsed.name;
+        if (players.has(name)) {
+          console.log(`[ERROR] Player ${name} already exists`);
+          return ws.terminate();
+        }
         newPlayer(msgParsed);
         ws.send(JSON.stringify(getPlayers()));
         break;
