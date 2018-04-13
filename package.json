@@ -1,0 +1,18 @@
+{
+  "name": "junglehunt-api",
+  "version": "1.0.0",
+  "description": "TIE-21106: JungleHunt Multiplayer Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "server"
+  ],
+  "author": "Markus Mulkahainen",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^5.1.1"
+  }
+}
