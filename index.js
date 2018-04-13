@@ -19,6 +19,14 @@ const DIE = { type: "SERVER_DIE" };
 
 // ----------------------------------
 
+wss.closeConnections = function close() {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.terminate();
+    }
+  });
+};
+
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
@@ -47,6 +55,7 @@ const startGame = () => {
 
 const endGame = () => {
   wss.broadcast(JSON.stringify(END_GAME));
+  wss.closeConnections();
 };
 
 const updatePlayer = ({ name, map, location, lives, score }) => {
