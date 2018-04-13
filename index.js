@@ -76,6 +76,7 @@ wss.on('connection', function connection(ws) {
   let name = "";
 
   ws.on('message', function incoming(message) {
+    console.log(`[INFO] Received: ${message}`);
     const msgParsed = JSON.parse(message);
     const { type } = msgParsed;
 
