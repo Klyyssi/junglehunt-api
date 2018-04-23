@@ -4,7 +4,7 @@
   "description": "TIE-21106: JungleHunt Multiplayer Server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test/*.js",
     "start": "node index.js"
   },
   "keywords": [
@@ -14,7 +14,10 @@
   "author": "Markus Mulkahainen",
   "license": "MIT",
   "dependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "express": "^4.16.3",
+    "mocha": "^5.1.1",
     "ws": "^5.1.1"
   }
 }
