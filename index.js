@@ -16,6 +16,7 @@ const JOIN = { type: "SERVER_JOIN" };
 const UPDATE = { type: "SERVER_UPDATE" };
 const FINISH = { type: "SERVER_FINISH" };
 const DIE = { type: "SERVER_DIE" };
+const PLAYERS = { type: "SERVER_PLAYERS" };
 
 // ----------------------------------
 
@@ -69,7 +70,7 @@ const killPlayer = ({ name }) => {
 
 const finishPlayer = ({ name }) => {
   wss.broadcast(JSON.stringify({ ...FINISH, name }));
-}
+};
 
 wss.on('connection', function connection(ws) {
   console.log("[INFO] New connection");
@@ -85,6 +86,9 @@ wss.on('connection', function connection(ws) {
     }
 
     switch (type) {
+      case "PLAYERS":
+        ws.send(JSON.stringify({ ...PLAYERS, players: getPlayers() }));
+        break;
       case "END":
         endGame();
         break;
