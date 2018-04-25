@@ -72,6 +72,11 @@ const finishPlayer = ({ name }) => {
   wss.broadcast(JSON.stringify({ ...FINISH, name }));
 };
 
+const resetServer = () => {
+  players.clear();
+  wss.closeConnections();
+}
+
 wss.on('connection', function connection(ws) {
   console.log("[INFO] New connection");
   let name = "";
@@ -86,6 +91,9 @@ wss.on('connection', function connection(ws) {
     }
 
     switch (type) {
+      case "RESET":
+        resetServer();
+        break;
       case "PLAYERS":
         ws.send(JSON.stringify({ ...PLAYERS, players: getPlayers() }));
         break;
