@@ -88,6 +88,7 @@ wss.on('connection', function connection(ws) {
 
     if (!type) {
       console.log(`[ERROR] Unknown message: ${message}`);
+      return;
     }
 
     switch (type) {
